@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F5F4FE;
+    font-weight: 400;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: #F5F4FE;
+    color: black;
+}
+
+.logo h1 {
+    font-size: 22px;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+.navbar {
+    margin-right: auto;
+    padding: 0 5%;
+}
+
+.search-container {
+    position: relative;
+    width: 30vw;
+}
+
+.search-input {
+    /* height: 40px; */
+    border-radius: 10px;
+    padding-left: 45px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-self: center;
+    margin: 0 25px;
+    padding-left: 0;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    /* font-weight: bold; */
+}
+
+.cart-btn {
+    background: #F5F4FE;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    /* display: flex;
+    align-items: center;
+    gap: 0.5rem; */
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.cart-count {
+    position: absolute;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    top: 0;
+    right: 10;
+}
+
+/* MAIN */
+.main-container {
+    display: flex;
+    flex: 1;
+}
+.products-container {
+    width: 100%;
+}
+
+/* ASIDE FILTROS */
+.aside-filters {
+    width: 200px;
+    /* background: #f8f9fa; */
+    padding: 1rem;
+    /* border-right: 1px solid #ddd; */
+    font-size: 14px;
+}
+
+.filter-links {
+    list-style: none;
+}
+
+.filter-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+    /* font-weight: bold; */
+}
+
+
+/* ASIDE CARRITO */
+
+.aside-cart {
+    width: 350px;
+    background: white;
+    border-left: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    right: -350px;
+    height: 100vh;
+    transition: right 0.3s ease;
+    z-index: 100;
+    padding: 1rem;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.aside-cart.active {
+    right: 0;
+}
+
+/* OVERLAY PARA CARRITO */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* GRILLA  */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: white;
+    max-width: 300px;
+    display: flex;
+    /* height: 200vh; */
+    /* height: 182px; */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    /* display: flex; */
+    /* width: 100%; */
+    border-bottom: none;
+    padding: 0;
+        background-color: white;
+}
+
+.card-image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+        /* padding: 0; */
+        height: 10vw;
+        /* flex: 1; */
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.badge-custom {
+    background: #FAAE42;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.price {
+    font-weight: 700;
+    color: #05B171;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 10vw;
+    padding-bottom: 0px;
+}
+
+.card-title {
+    margin-bottom: auto;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card-footer {
+    border-top: none;
+}
+
+.btn-shop {
+    font-size: 10px;
+    background-color: #634C9F;
+    border-color: #634C9F;
+}
