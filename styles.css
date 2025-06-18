@@ -98,10 +98,14 @@ body {
 /* MAIN */
 .main-container {
     display: flex;
+    margin-top: 5vh;
     flex: 1;
 }
 .products-container {
     width: 100%;
+}
+.products-container .container {
+    max-width: 90%; 
 }
 
 /* ASIDE FILTROS */
@@ -191,11 +195,19 @@ body {
     height: 100%;
     width: 100%;
     object-fit: contain;
-        /* padding: 0; */
-        height: 10vw;
-        /* flex: 1; */
+    /* height: 10vw; */
+    height: 200px;
     padding: 15px;
     margin-top: 10px;
+}
+
+.card-advice {
+    text-align: center;
+    font-size: 12px;
+    padding: 15px 0 15px 0;
+}
+.card-advice p {
+    margin: 0;
 }
 
 .badge-custom {
@@ -224,10 +236,13 @@ body {
 
 .card-footer {
     border-top: none;
+    text-align: center;
+    margin-bottom: 15px;
+    /* font-size: 12px; */
 }
 
-.btn-shop {
-    font-size: 10px;
+.btn-detail {
+    font-size: 12px;
     background-color: #634C9F;
     border-color: #634C9F;
 }

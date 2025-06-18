@@ -1,22 +1,34 @@
-let productos = [];
+import { showDetails } from "./detail.js";
+import { getProducts } from "./externalData.js";
+import { getProductsInCart } from "./cart.js";
 
-export const fetchData = async () => {
-    let response = await fetch('https://fakestoreapi.com/products');
-    let json = await response.json();
-    console.log(json)
-    productos = json;
+//Variables globales
+let productos = [];
+let productosEnCarrito = []
+let listContainer = document.getElementById("listContainer");
+let contador = document.getElementById("cart-count");
+
+//Inicializacion Web
+async function init() {
+    productos = await getProducts();
+    productosEnCarrito = getProductsInCart();
+    crearCards()
+    actualizarCardAdvice()
+    actualizarCartCounter()
 }
 
-let listContainer = document.getElementById("listContainer");
+init()
 
+//Funciones
 function crearCards() {
     if (productos.length > 0) {
 
         listContainer.innerHTML = ""
         let newRender = ""
+
         productos.forEach(producto => {
             let cardStructure =
-                `<div class="col"> 
+                `<div class="col" id="card-${producto.id}"> 
                     <div class="card h-100">
                         <div class="card-header h-65 overflow-hidden">
                             <span class="badge badge-custom position-absolute top-0 end-0 m-2">Nuevo</span>
@@ -24,6 +36,9 @@ function crearCards() {
                         </div>
                         <div class="card-body h-25">
                             <p class="card-title">${producto.title}</p>
+                            <div class="card-advice">
+                                <p id="cardAdvice-${producto.id}"></p>
+                            </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <span class="price">$${producto.price}</span>
@@ -32,45 +47,37 @@ function crearCards() {
                             </div>
                         </div>
                         <div class="card-footer bg-white h-10">
-                            <button class="btn btn-primary btn-shop">
-                                <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                            <button class="btn btn-primary btn-detail" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="${producto.id}">
+                                <i class="fas fa-thin fa-basket-shopping"></i> Comprar
                             </button>
                         </div>
                     </div>
                 </div>`
 
             newRender += cardStructure
-
         });
         listContainer.innerHTML = newRender
+
+        document.querySelectorAll(".btn-detail").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const id = e.currentTarget.id;
+                const result = productos.find(x => x.id == id)
+                showDetails(result);
+            });
+        });
     }
 }
 
-async function cargarPagina() {
-    await fetchData();
-    crearCards()
+export function actualizarCardAdvice () {
+    productosEnCarrito = getProductsInCart();
+    productosEnCarrito.forEach(prod => {
+        let advice = document.getElementById(`cardAdvice-${prod.id}`)
+        advice.innerHTML = `Cantidad: ${prod.quantity.toString()} en el carrito`
+    })
 }
 
-cargarPagina()
-
-
-
-const cartBtn = document.getElementById('cart-btn');
-const cartSidebar = document.getElementById('cart-sidebar');
-const closeCart = document.getElementById('close-cart');
-const overlay = document.getElementById('overlay');
-
-cartBtn.addEventListener('click', () => {
-    cartSidebar.classList.add('active');
-    overlay.classList.add('active');
-});
-
-closeCart.addEventListener('click', () => {
-    cartSidebar.classList.remove('active');
-    overlay.classList.remove('active');
-});
-
-overlay.addEventListener('click', () => {
-    cartSidebar.classList.remove('active');
-    overlay.classList.remove('active');
-});
+export function actualizarCartCounter () {
+    productosEnCarrito = getProductsInCart();
+    console.log(productosEnCarrito)
+    contador.innerHTML = productosEnCarrito.map(x => x.quantity).reduce((a,b) => a+b)
+}
