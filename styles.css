@@ -110,10 +110,8 @@ body {
 
 /* ASIDE FILTROS */
 .aside-filters {
-    width: 200px;
-    /* background: #f8f9fa; */
-    padding: 1rem;
-    /* border-right: 1px solid #ddd; */
+    width: 250px;
+    padding: 1rem 0.5rem;
     font-size: 14px;
 }
 
@@ -121,13 +119,14 @@ body {
     list-style: none;
 }
 
-.filter-links a {
+.filter-links li {
     color: black;
     text-decoration: none;
     font-size: 12px;
+    cursor: pointer;
+    padding: 5px 0 0 0;
     /* font-weight: bold; */
 }
-
 
 /* ASIDE CARRITO */
 

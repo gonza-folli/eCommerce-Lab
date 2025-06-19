@@ -1,4 +1,4 @@
-import { actualizarCardAdvice } from "../js/index.js";
+import { actualizarCardAdvice, actualizarCartCounter } from "../js/index.js";
 
 let image = document.getElementById("detailCardImage");
 let category = document.getElementById("detailCardCategory");
@@ -67,6 +67,6 @@ function clearDetail() {
     price.innerHTML = ""
     rating.innerHTML = ""
     quantity.value = 0
-    console.log("entre al detail")
-    actualizarCardAdvice()  
+    actualizarCardAdvice()
+    actualizarCartCounter()
 }
