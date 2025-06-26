@@ -26,7 +26,7 @@ E-commerce desarrollado para el trabajo práctico de la materia Laboratorio de A
 ## 📦 Estructura del proyecto
 
 ```
-gonesu-ecommerce/
+eCommerce-Lab/
 ├── index.html              # Página principal
 ├── css/
 │      ├── styles.css          # Estilos generales
