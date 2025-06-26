@@ -12,7 +12,6 @@ let buscador = document.getElementById("search")
 let filters = document.querySelectorAll(".filter-links li")
 let limpiar = document.getElementById("clean")
 
-
 //Inicializacion Web
 async function init() {
     productos = originalProducts;
@@ -27,7 +26,6 @@ init()
 //Funciones
 function crearCards() {
     // if (productos.length > 0) {
-
     listContainer.innerHTML = ""
     let newRender = ""
 
@@ -58,7 +56,6 @@ function crearCards() {
                         </div>
                     </div>
                 </div>`
-
         newRender += cardStructure
     });
     listContainer.innerHTML = newRender
@@ -82,8 +79,10 @@ export function actualizarCardAdvice() {
 }
 
 export function actualizarCartCounter() {
-    productosEnCarrito = getProductsInCart();
-    contador.innerHTML = productosEnCarrito.map(x => x.quantity).reduce((a, b) => a + b)
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    contador.textContent = totalQuantity; 
 }
 
 function actualizarFiltros(button) {
@@ -97,7 +96,6 @@ function actualizarFiltros(button) {
         }
     })
 }
-
 
 //Eventos
 buscador.addEventListener("input", async (evt) => {

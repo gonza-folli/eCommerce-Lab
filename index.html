@@ -78,8 +78,11 @@
 
             </div>
             <div class="cart-total">
-                <p>Total: <span id="cart-total">$0.00</span></p>
-                <button class="checkout-btn">Finalizar Compra</button>
+                <p class="cart-total">Total: <span id="cart-total">$0.00</span></p>
+                <div class="cart-total-btn">
+                    <button class="checkout-btn btn btn-primary btn-sm">Finalizar Compra</button>
+                    <button class="btn btn-danger btn-sm" id="clear-cart-btn">Vaciar Carrito</button>
+                </div>
             </div>
         </aside>
         <div class="overlay" id="overlay"></div>
@@ -111,15 +114,26 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer detail-footer">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="input-group quantity-group" style="width: auto;">
+                                <button class="btn btn-outline-secondary btn-sm" id="btn-decrease">-</button>
+                                <input type="text" class="form-control form-control-sm text-center" id="productQuantityInput" value="1" readonly style="width: 50px;">
+                                <button class="btn btn-outline-secondary btn-sm" id="btn-increase">+</button>
+                            </div>
+                            <button class="btn btn-primary btn-shop" id="detailCardAddToCart">
+                                <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer detail-footer">
                         <div class="input-group quantity-group" style="width: auto;">
                             <input type="text" class="form-control form-control-sm" id="productQuantityInput" value="0" min="1">
                             <button class="btn btn-primary btn-shop" id="detailCardAddToCart">
                                 <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
