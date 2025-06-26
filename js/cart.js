@@ -68,6 +68,22 @@ function renderCartItems() {
         btn.addEventListener("click", (e) => {
             const id = Number(e.currentTarget.getAttribute("data-id"));
             removeFromCart(id);
+
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Producto Eliminado',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+
         });
     });
 
@@ -125,6 +141,14 @@ overlay.addEventListener('click', () => {
 // Vaciar carrito y actualizar todo
 clearCartBtn.addEventListener("click", () => {
     localStorage.removeItem("cart");
+
+    Swal.fire({
+        icon: 'warning',
+        title: 'Carrito Eliminado!',
+        text: 'Se ha vaciado el carrito. Recorre la página para ver otros productos',
+        confirmButtonColor: '#634C9F'
+    });
+
     renderCartItems();
     actualizarCartCounter();
     actualizarCardAdvice();
@@ -132,27 +156,27 @@ clearCartBtn.addEventListener("click", () => {
 
 // Finalizar compra 
 finishiCartBtn.addEventListener("click", () => {
-  const cart = getProductsInCart();
+    const cart = getProductsInCart();
 
-  if (cart.length === 0) {
+    if (cart.length === 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Tu carrito está vacío',
+            text: 'Agregá productos antes de finalizar la compra.',
+            confirmButtonColor: '#634C9F'
+        });
+        return;
+    }
+
     Swal.fire({
-      icon: 'warning',
-      title: 'Tu carrito está vacío',
-      text: 'Agregá productos antes de finalizar la compra.',
-      confirmButtonColor: '#634C9F'
+        icon: 'success',
+        title: '¡Compra realizada!',
+        text: 'Gracias por tu compra. Te llegará un correo con los detalles.',
+        confirmButtonColor: '#634C9F'
     });
-    return;
-  }
 
-  Swal.fire({
-    icon: 'success',
-    title: '¡Compra realizada!',
-    text: 'Gracias por tu compra. Te llegará un correo con los detalles.',
-    confirmButtonColor: '#634C9F'
-  });
-
-  localStorage.removeItem("cart");
-  renderCartItems();
-  actualizarCartCounter();
-  actualizarCardAdvice();
+    localStorage.removeItem("cart");
+    renderCartItems();
+    actualizarCartCounter();
+    actualizarCardAdvice();
 });
