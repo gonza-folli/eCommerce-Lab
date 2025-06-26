@@ -248,7 +248,6 @@ body {
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: background-color 0.25s ease, color 0.25s ease;
-
 }
 
 #close-cart:hover {

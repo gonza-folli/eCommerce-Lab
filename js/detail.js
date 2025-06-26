@@ -61,7 +61,11 @@ function addProduct() {
     const cantidad = Number(quantity.value);
     if (isNaN(cantidad) || cantidad < 1) {
         alert("No se ingresó una cantidad válida");
-        return;
+        return Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se ingresó una cantidad válida',
+        });
     }
 
     const productToAdd = {
@@ -80,6 +84,22 @@ function addProduct() {
     } else {
         cart.push(productToAdd);
     }
+    
+    //Alerta de modal
+    Swal.fire({
+        toast: true,
+        position: 'bottom-end', 
+        icon: 'success',
+        title: 'Producto agregado al carrito',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
 
     localStorage.setItem("cart", JSON.stringify(cart));
     closeModal.click();

@@ -5,6 +5,7 @@ const cartSidebar = document.getElementById('cart-sidebar');
 const closeCart = document.getElementById('close-cart');
 const overlay = document.getElementById('overlay');
 const clearCartBtn = document.getElementById('clear-cart-btn');
+const finishiCartBtn = document.getElementById('cart-total-finish')
 
 // Función para obtener los productos guardados en el carrito desde localStorage
 export const getProductsInCart = () => {
@@ -127,4 +128,31 @@ clearCartBtn.addEventListener("click", () => {
     renderCartItems();
     actualizarCartCounter();
     actualizarCardAdvice();
+});
+
+// Finalizar compra 
+finishiCartBtn.addEventListener("click", () => {
+  const cart = getProductsInCart();
+
+  if (cart.length === 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Tu carrito está vacío',
+      text: 'Agregá productos antes de finalizar la compra.',
+      confirmButtonColor: '#634C9F'
+    });
+    return;
+  }
+
+  Swal.fire({
+    icon: 'success',
+    title: '¡Compra realizada!',
+    text: 'Gracias por tu compra. Te llegará un correo con los detalles.',
+    confirmButtonColor: '#634C9F'
+  });
+
+  localStorage.removeItem("cart");
+  renderCartItems();
+  actualizarCartCounter();
+  actualizarCardAdvice();
 });
