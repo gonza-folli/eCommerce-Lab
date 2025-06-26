@@ -40,7 +40,7 @@ function crearCards() {
                         <div class="card-body h-25">
                             <p class="card-title">${producto.title}</p>
                             <div class="card-advice">
-                                <p id="cardAdvice-${producto.id}"></p>
+                                <p class="card-advice-p" id="cardAdvice-${producto.id}"></p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
@@ -71,6 +71,13 @@ function crearCards() {
 }
 
 export function actualizarCardAdvice() {
+    //limpio todo
+    let todosLasLeyendas = [...document.getElementsByClassName("card-advice-p")]
+    todosLasLeyendas.forEach(leyenda => {
+        leyenda.innerHTML = ""
+    })
+
+    //seteo los del carrito
     productosEnCarrito = getProductsInCart();
     productosEnCarrito.forEach(prod => {
         let advice = document.getElementById(`cardAdvice-${prod.id}`)
