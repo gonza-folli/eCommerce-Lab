@@ -76,8 +76,8 @@ eCommerce-Lab/
 ## 🚧 Instalación local
 
 ```bash
-git clone https://github.com/tu-usuario/gonesu-ecommerce.git
-cd gonesu-ecommerce
+git clone https://github.com/gonza-folli/eCommerce-Lab.git
+cd eCommerce-Lab
 
 ```
 
